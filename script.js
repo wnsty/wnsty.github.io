@@ -207,7 +207,7 @@ function addMoney(innerText) {
 function addLink(innerText) {
 	let entry = document.createElement('td');
 	let a = document.createElement('a');
-	a.innerText = innerText;
+	a.innerText = "Here!";
 	a.setAttribute('href', innerText);
 	entry.appendChild(a);
 	return entry;
@@ -302,24 +302,5 @@ document.getElementById('ml_per_unit_price_th').addEventListener('click', e => {
 document.getElementById('in_stock_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons in_stock_icon'));});
 document.getElementById('notes_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons notes_icon'));});
 document.getElementById('url_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons url_icon'));});
-
-document.getElementById('retailer_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons retailer_icon'));});
-document.getElementById('brand_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons brand_icon'));});
-document.getElementById('name_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons name_icon'));});
-document.getElementById('backing_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons backing_icon'));});
-document.getElementById('tapes_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons tapes_icon'));});
-document.getElementById('size_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons size_icon'));});
-document.getElementById('waist_low_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons waist_low_icon'));});
-document.getElementById('waist_high_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons waist_high_icon'));});
-document.getElementById('price_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons price_icon'));});
-document.getElementById('shipping_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons shipping_icon'));});
-document.getElementById('total_price_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons total_price_icon'));});
-document.getElementById('units_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons units_icon'));});
-document.getElementById('unit_price_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons unit_price_icon'));});
-document.getElementById('capacity_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons capacity_icon'));});
-document.getElementById('ml_per_unit_price_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons ml_per_unit_price_icon'));});
-document.getElementById('in_stock_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons in_stock_icon'));});
-document.getElementById('notes_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons notes_icon'));});
-document.getElementById('url_tf').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons url_icon'));});
 
 main();
