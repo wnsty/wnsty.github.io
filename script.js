@@ -226,10 +226,10 @@ async function render(json) {
 		tr.appendChild(addText(row.backing));
 		tr.appendChild(addText(row.tapes));
 		tr.appendChild(addText(row.size));
-		tr.appendChild(addText(row.waist_low));
-		tr.appendChild(addText(row.waist_high));
+		tr.appendChild(addText(row.waist_low + " - " + row.waist_high));
+		// tr.appendChild(addText(row.waist_high));
 		tr.appendChild(addMoney(row.price));
-		tr.appendChild(addText(row.shipping));
+		// tr.appendChild(addText(row.shipping));
 		tr.appendChild(addMoney(row.total_price));
 		tr.appendChild(addText(row.units));
 		tr.appendChild(addMoney(row.unit_price));
@@ -290,10 +290,10 @@ document.getElementById('name_th').addEventListener('click', e => {toggle(docume
 document.getElementById('backing_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons backing_icon'));});
 document.getElementById('tapes_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons tapes_icon'));});
 document.getElementById('size_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons size_icon'));});
-document.getElementById('waist_low_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons waist_low_icon'));});
-document.getElementById('waist_high_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons waist_high_icon'));});
+document.getElementById('waist_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons waist_icon'));});
+// document.getElementById('waist_high_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons waist_high_icon'));});
 document.getElementById('price_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons price_icon'));});
-document.getElementById('shipping_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons shipping_icon'));});
+// document.getElementById('shipping_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons shipping_icon'));});
 document.getElementById('total_price_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons total_price_icon'));});
 document.getElementById('units_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons units_icon'));});
 document.getElementById('unit_price_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons unit_price_icon'));});

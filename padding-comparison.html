@@ -125,72 +125,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- <div class="column">
-
-	
-			<div class="column">
-				<label for="unit_price"><b>Unit Price: </b></label>
-				<div class="columns is-mobile">
-					
-					<div class="column">
-							<label for="min_unit_price">Min: </label>
-							<label for="max_unit_price">Max: </label>
-					</div>
-					<div class="column">
-						<input type="number" name="min_unit_price" id="min_unit_price" onchange="update()" value="0">
-						<input type="number" name="max_unit_price" id="max_unit_price" onchange="update()" value="5">
-					</div>
-				</div>
-				
-			</div>
-	
-			<div class="column">
-				<label for="ml_per_unit_price"><b>ML Per Unit Price: </b></label>
-				<div class="columns is-mobile">
-					<div class="column">
-							<label for="min_ml_per_unit_price">Min: </label>
-							<label for="max_ml_per_unit_price">Max: </label>
-					</div>
-					<div class="column">
-						<input type="number" name="min_ml_per_unit_price" id="min_ml_per_unit_price" onchange="update()" value="0">
-						<input type="number" name="max_ml_per_unit_price" id="max_ml_per_unit_price" onchange="update()" value="4000">
-					</div>
-				</div>
-				
-			</div>
-
-			<div class="column">
-				<label for="misc"><b>Misc: </b></label>
-				<div class="columns is-mobile">
-					<div class="column">
-						<div>
-							<label for="in_stock">In Stock Only: </label>
-							<label for="show_all">Ignore All Filters: </label>
-							<label for="tapes">Tapes: </label>
-							<label for="backing">Backing: </label>
-						</div>
-					</div>
-					<div class="column">
-						<div>
-							<input type="checkbox" name="in_stock" id="in_stock" onchange="update()" checked>
-							<input type="checkbox" name="show_all" id="show_all" onchange="update()">
-						<div>
-							<select name="tapes" id="tapes" onchange="update()">
-								<option value="both">Both</option>
-								<option value="4">4</option>
-								<option value="2">2</option>
-							</select>
-						</div>
-						<div>
-							<select name="backing" id="backing" onchange="update()">
-								<option value="both">Both</option>
-								<option value="plastic">Plastic</option>
-								<option value="cloth">Cloth</option>
-							</select>
-						</div>
-					</div>
-				</div>
-			</div> -->
 		</div>
 	</div>
 	
@@ -207,10 +141,9 @@
 			<th id="backing_th" onclick="modifySorts('backing')"><label for="backing_th">Backing</label><i class="material-icons backing_icon">remove</i></th>
 			<th id="tapes_th" onclick="modifySorts('tapes')"><label for="tapes_th">Tapes</label><i class="material-icons tapes_icon">remove</i></th>
 			<th id="size_th" onclick="modifySorts('size')"><label for="size_th">Size</label><i class="material-icons size_icon">remove</i></th>
-			<th id="waist_low_th" onclick="modifySorts('waist_low')"><label for="waist_low_th">Waist</label><i class="material-icons waist_low_icon">remove</i></th>
-			<th id="waist_high_th" onclick="modifySorts('waist_high')"><label for="waist_high_th">Waist</label><i class="material-icons waist_high_icon">remove</i></th>
+			<th id="waist_th" onclick="modifySorts('waist')"><label for="waist_th">Waist</label><i class="material-icons waist_icon">remove</i></th>
 			<th id="price_th" onclick="modifySorts('price')"><label for="price_th">Order</label><i class="material-icons price_icon">remove</i></th>
-			<th id="shipping_th" onclick="modifySorts('shipping')"><label for="shipping_th">Shipping</label><i class="material-icons shipping_icon">remove</i></th>
+			<!-- <th id="shipping_th" onclick="modifySorts('shipping')"><label for="shipping_th">Shipping</label><i class="material-icons shipping_icon">remove</i></th> -->
 			<th id="total_price_th" onclick="modifySorts('total_price')"><label for="total_price_th">Total</label><i class="material-icons total_price_icon">remove</i></th>
 			<th id="units_th" onclick="modifySorts('units')"><label for="units_th">Units</label><i class="material-icons units_icon">remove</i></th>
 			<th id="unit_price_th" onclick="modifySorts('unit_price')"><label for="unit_price_th">Unit Price</label><i class="material-icons unit_price_icon">remove</i></th>
