@@ -40,6 +40,11 @@ function modifySorts(column) {
 function checkWaist(waist_low, waist_high) {
 	waist_low = Number(waist_low)
 	waist_high = Number(waist_high)
+	let link_waist = document.getElementById('link_waist');
+	if (link_waist === null) {
+		console.log("link_waist is null");
+		return true;
+	}
 	let min_waist = document.getElementById('min_waist');
 	if (min_waist === null) {
 		console.log("min_waist is null");
@@ -50,8 +55,12 @@ function checkWaist(waist_low, waist_high) {
 		console.log("max_waist is null");
 		return true;
 	}
-	return (min_waist.value >= waist_low && min_waist.value <= waist_high) 
-	|| (max_waist.value >= waist_low && max_waist.value <= waist_high);
+	if (link_waist)
+	{
+		return waist_low >= min_waist.value && waist_low <= max_waist.value;
+	} else {
+		return waist_low >= min_waist.value || waist_high <= max_waist.value;
+	}
 }
 
 function sortJson(json) {
