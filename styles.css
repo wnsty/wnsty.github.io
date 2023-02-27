@@ -6,6 +6,12 @@ body {
 	font-family: 'Fredoka';
 	background: lightpink;
 	padding: 5px;
+	width: auto;
+	overflow: auto;
+}
+
+.small_number {
+	width: 5em;
 }
 
 h1 {
@@ -30,6 +36,8 @@ h1 {
 
 table {
 	width: auto;
+	/* overflow: auto;
+	white-space: nowrap; */
 }
 
 th {

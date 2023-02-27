@@ -18,13 +18,19 @@
 				<p class="subtitle is-4"><b>Waist Size: </b></p>
 				<div class="columns">
 					<div class="column">
+						
+						
 						<p><label for="min_waist">Minimum: </label></p>
-						<p><label for="max_waist">Maximum: </label></p>
-						<p><label for="link_waist">Link: </label></p>
+						<div><input type="number" class="small_number" name="min_waist" id="min_waist" onchange="update_waist(false)" value="32"></div>
 					</div>
 					<div class="column">
-						<div><input type="number" name="min_waist" id="min_waist" onchange="update_waist(false)" value="32"></div>
-						<div><input type="number" name="max_waist" id="max_waist" onchange="update_waist(true)" value="32"></div>
+						
+						<p><label for="max_waist">Maximum: </label></p>
+						<div><input type="number" class="small_number" name="max_waist" id="max_waist" onchange="update_waist(true)" value="32"></div>
+						
+					</div>
+					<div class="column">
+						<p><label for="link_waist">Link: </label></p>
 						<div><input type="checkbox" name="link_waist" id="link_waist" onchange="update_waist(false)" checked="true"></div>
 					</div>
 				</div>
@@ -35,11 +41,11 @@
 				<div class="columns">
 					<div class="column">
 						<p><label for="min_budget">Minimum: </label></p>
-						<p><label for="max_budget">Maximum: </label></p>
+						<div><input type="number" class="small_number" name="min_budget" id="min_budget" onchange="update()" value="0"></div>
 					</div>
 					<div class="column">
-						<div><input type="number" name="min_budget" id="min_budget" onchange="update()" value="0"></div>
-						<div><input type="number" name="max_budget" id="max_budget" onchange="update()" value="1000"></div>
+						<p><label for="max_budget">Maximum: </label></p>
+						<div><input type="number" class="small_number" name="max_budget" id="max_budget" onchange="update()" value="1000"></div>
 					</div>
 				</div>
 			</div>
@@ -49,39 +55,39 @@
 				<div class="columns">
 					<div class="column">
 						<p><label for="min_capacity">Minimum: </label></p>
-						<p><label for="max_capacity">Maximum: </label></p>
+						<div><input type="number" class="small_number" name="min_capacity" id="min_capacity" onchange="update()" value="0"></div>
 					</div>
 					<div class="column">
-						<div><input type="number" name="min_capacity" id="min_capacity" onchange="update()" value="0"></div>
-						<div><input type="number" name="max_capacity" id="max_capacity" onchange="update()" value="10000"></div>
+						<p><label for="max_capacity">Maximum: </label></p>
+						<div><input type="number" class="small_number" name="max_capacity" id="max_capacity" onchange="update()" value="10000"></div>
 					</div>
 				</div>
 			</div>
 
 			<div class="column">
-				<p class="subtitle is-4"><b>Unit Price: </b></p>
+				<p class="subtitle is-4"><b>Unit $: </b></p>
 				<div class="columns">
 					<div class="column">
 						<p><label for="min_unit_price">Minimum: </label></p>
-						<p><label for="max_unit_price">Maximum: </label></p>
+						<div><input type="number" class="small_number" name="min_unit_price" id="min_unit_price" onchange="update()" value="0"></div>
 					</div>
 					<div class="column">
-						<div><input type="number" name="min_unit_price" id="min_unit_price" onchange="update()" value="0"></div>
-						<div><input type="number" name="max_unit_price" id="max_unit_price" onchange="update()" value="5"></div>
+						<p><label for="max_unit_price">Maximum: </label></p>
+						<div><input type="number" class="small_number" name="max_unit_price" id="max_unit_price" onchange="update()" value="5"></div>
 					</div>
 				</div>
 			</div>
 
 			<div class="column">
-				<p class="subtitle is-4"><b>ML Per Unit Price: </b></p>
+				<p class="subtitle is-4"><b>ML / Unit $: </b></p>
 				<div class="columns">
 					<div class="column">
 						<p><label for="min_ml_per_unit_price">Minimum: </label></p>
-						<p><label for="max_ml_per_unit_price">Maximum: </label></p>
+						<div><input type="number" class="small_number" name="min_ml_per_unit_price" id="min_ml_per_unit_price" onchange="update()" value="0"></div>
 					</div>
 					<div class="column">
-						<div><input type="number" name="min_ml_per_unit_price" id="min_ml_per_unit_price" onchange="update()" value="0"></div>
-						<div><input type="number" name="max_ml_per_unit_price" id="max_ml_per_unit_price" onchange="update()" value="4000"></div>
+						<p><label for="max_ml_per_unit_price">Maximum: </label></p>
+						<div><input type="number" class="small_number" name="max_ml_per_unit_price" id="max_ml_per_unit_price" onchange="update()" value="4000"></div>
 					</div>
 				</div>
 			</div>
@@ -91,9 +97,6 @@
 				<div class="columns">
 					<div class="column">
 						<p><label for="tapes">Tapes: </label></p>
-						<p><label for="backing">Backing: </label></p>
-					</div>
-					<div class="column">
 						<div>
 							<select name="tapes" id="tapes" onchange="update()">
 								<option value="both">Both</option>
@@ -101,6 +104,9 @@
 								<option value="2">2</option>
 							</select>
 						</div>
+					</div>
+					<div class="column">
+						<p><label for="backing">Backing: </label></p>
 						<div>
 							<select name="backing" id="backing" onchange="update()">
 								<option value="both">Both</option>
@@ -117,10 +123,10 @@
 				<div class="columns">
 					<div class="column">
 						<p><label for="in_stock">In Stock: </label></p>
-						<p><label for="show_all">Show All: </label></p>
+						<div><input type="checkbox" name="in_stock" id="in_stock" onchange="update()" checked></div>
 					</div>
 					<div class="column">
-						<div><input type="checkbox" name="in_stock" id="in_stock" onchange="update()" checked></div>
+						<p><label for="show_all">Show All: </label></p>
 						<div><input type="checkbox" name="show_all" id="show_all" onchange="update()"></div>
 					</div>
 				</div>
