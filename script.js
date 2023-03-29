@@ -40,27 +40,12 @@ function modifySorts(column) {
 function checkWaist(waist_low, waist_high) {
 	waist_low = Number(waist_low)
 	waist_high = Number(waist_high)
-	let link_waist = document.getElementById('link_waist');
-	if (link_waist === null) {
-		console.log("link_waist is null");
+	let waist = document.getElementById('waist');
+	if (waist === null) {
+		console.log("waist is null");
 		return true;
 	}
-	let min_waist = document.getElementById('min_waist');
-	if (min_waist === null) {
-		console.log("min_waist is null");
-		return true;
-	}
-	let max_waist = document.getElementById('max_waist');
-	if (max_waist === null) {
-		console.log("max_waist is null");
-		return true;
-	}
-	if (link_waist)
-	{
-		return waist_low >= min_waist.value && waist_low <= max_waist.value;
-	} else {
-		return waist_low >= min_waist.value || waist_high <= max_waist.value;
-	}
+	return waist.value >= waist_low && waist.value <= waist_high;
 }
 
 function sortJson(json) {
@@ -299,20 +284,20 @@ async function update() {
 }
 
 async function update_waist(is_max) {
-	let link_waist = document.getElementById('link_waist');
-	if (link_waist === null) {
-		console.log("link waist is null");
-		return;
-	}
-	if (link_waist.checked) {
-		let max_waist = document.getElementById('max_waist');
-		let min_waist = document.getElementById('min_waist');
-		if (is_max) {
-			min_waist.value = max_waist.value;
-		} else {
-			max_waist.value = min_waist.value;
-		}
-	}
+	// let link_waist = document.getElementById('link_waist');
+	// if (link_waist === null) {
+	// 	console.log("link waist is null");
+	// 	return;
+	// }
+	// if (link_waist.checked) {
+	// 	let max_waist = document.getElementById('max_waist');
+	// 	let min_waist = document.getElementById('min_waist');
+	// 	if (is_max) {
+	// 		min_waist.value = max_waist.value;
+	// 	} else {
+	// 		max_waist.value = min_waist.value;
+	// 	}
+	// }
 	update();
 }
 
