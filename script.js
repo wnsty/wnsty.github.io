@@ -222,11 +222,36 @@ function addLink(innerText) {
 	return entry;
 }
 
+function interpolate_color(color1, color2, percentage) {
+	const r = Math.round(interpolate(color1[0], color2[0], percentage));
+	const g = Math.round(interpolate(color1[1], color2[1], percentage));
+	const b = Math.round(interpolate(color1[2], color2[2], percentage));
+	return [r, g, b];
+}
+
+function interpolate(value1, value2, percentage) {
+	return value1 * (1 - percentage) + value2 * percentage;
+}
+
+function rgb_string(color) {
+	return `rgb(${color[0]}, ${color[1]}, ${color[2]})`
+}
+
 async function render(json) {
+	const green = [87, 187, 138];
+	const red = [230, 124, 115];
 	let tbody = document.getElementById('tbody');
 	while (tbody.firstChild) {
 		tbody.removeChild(tbody.firstChild);
 	}
+	const max_total_price = Math.max(...Object.values(json).map(obj => obj.total_price));
+	const min_total_price = Math.min(...Object.values(json).map(obj => obj.total_price));
+	const max_unit_price = Math.max(...Object.values(json).map(obj => obj.unit_price));
+	const min_unit_price = Math.min(...Object.values(json).map(obj => obj.unit_price));
+	const min_capacity = Math.min(...Object.values(json).map(obj => obj.capacity));
+	const max_capacity = Math.max(...Object.values(json).map(obj => obj.capacity));
+	const min_ml_per_unit_price = Math.min(...Object.values(json).map(obj => obj.ml_per_unit_price));
+	const max_ml_per_unit_price = Math.max(...Object.values(json).map(obj => obj.ml_per_unit_price));
 	for (const [_, row] of json.entries()) {
 		let tr = document.createElement('tr');
 		tr.appendChild(addText(row.retailer));
@@ -234,16 +259,30 @@ async function render(json) {
 		tr.appendChild(addText(row.name));
 		tr.appendChild(addText(row.backing));
 		tr.appendChild(addText(row.tapes));
+		// size_element.setAttribute("bgColor", "red");
 		tr.appendChild(addText(row.size));
 		tr.appendChild(addText(row.waist_low + " - " + row.waist_high));
 		// tr.appendChild(addText(row.waist_high));
-		tr.appendChild(addMoney(row.price));
+		// tr.appendChild(addMoney(row.price));
 		// tr.appendChild(addText(row.shipping));
-		tr.appendChild(addMoney(row.total_price));
+
+		const total_price_element = addMoney(row.total_price);
+		const total_price_color = interpolate_color(green, red, (row.total_price - min_total_price) / (max_total_price - min_total_price));
+		total_price_element.style.backgroundColor = rgb_string(total_price_color);
+		tr.appendChild(total_price_element);
 		tr.appendChild(addText(row.units));
-		tr.appendChild(addMoney(row.unit_price));
-		tr.appendChild(addText(row.capacity));
-		tr.appendChild(addText(row.ml_per_unit_price));
+		const unit_price_element = addMoney(row.unit_price);
+		const unit_price_color = interpolate_color(green, red, (row.unit_price - min_unit_price) / (max_unit_price - min_unit_price));
+		unit_price_element.style.backgroundColor = rgb_string(unit_price_color);
+		tr.appendChild(unit_price_element);
+		const capacity_element = addText(row.capacity);
+		const capacity_color = interpolate_color(red, green,  (row.capacity - min_capacity) / (max_capacity - min_capacity));
+		capacity_element.style.backgroundColor = rgb_string(capacity_color);
+		tr.appendChild(capacity_element);
+		const ml_per_unit_price_element = addText(row.ml_per_unit_price);
+		const ml_per_unit_price_color = interpolate_color(red, green, (row.ml_per_unit_price - min_ml_per_unit_price) / (max_ml_per_unit_price - min_ml_per_unit_price));
+		ml_per_unit_price_element.style.backgroundColor = rgb_string(ml_per_unit_price_color);
+		tr.appendChild(ml_per_unit_price_element);
 		tr.appendChild(addText(row.in_stock));
 		tr.appendChild(addText(row.notes));
 		tr.appendChild(addLink(row.url));
@@ -301,7 +340,7 @@ document.getElementById('tapes_th').addEventListener('click', e => {toggle(docum
 document.getElementById('size_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons size_icon'));});
 document.getElementById('waist_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons waist_icon'));});
 // document.getElementById('waist_high_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons waist_high_icon'));});
-document.getElementById('price_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons price_icon'));});
+// document.getElementById('price_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons price_icon'));});
 // document.getElementById('shipping_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons shipping_icon'));});
 document.getElementById('total_price_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons total_price_icon'));});
 document.getElementById('units_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons units_icon'));});
