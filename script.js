@@ -241,7 +241,7 @@ async function render(json) {
 		let tr = document.createElement('tr');
 		tr.appendChild(addText(row.retailer));
 		tr.appendChild(addText(row.brand));
-		tr.appendChild(addText(row.name));
+		tr.appendChild(addText(row.title));
 		tr.appendChild(addText(row.backing));
 		tr.appendChild(addText(row.tapes));
 		// size_element.setAttribute("bgColor", "red");
@@ -320,7 +320,7 @@ function toggle(targets) {
 
 document.getElementById('retailer_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons retailer_icon'));});
 document.getElementById('brand_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons brand_icon'));});
-document.getElementById('name_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons name_icon'));});
+document.getElementById('title_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons title_icon'));});
 document.getElementById('backing_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons backing_icon'));});
 document.getElementById('tapes_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons tapes_icon'));});
 document.getElementById('size_th').addEventListener('click', e => {toggle(document.getElementsByClassName('material-icons size_icon'));});
