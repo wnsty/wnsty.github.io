@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Padding Comparison</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+	<h1 class="title">Padding Comparison Chart</h1>
+	<div class="columns-container is-mobile">
+		<div class="columns is-mobile">
+			<div class="column">
+				<p class="subtitle is-4"><b>Size: </b></p>
+				<div class="columns">
+					<div class="column">
+						<p><label for="min_waist">Waist: </label></p>
+						<div><input type="number" class="small_number" name="waist" id="waist" onchange="update_waist(false)" value="32"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="column">
+				<p class="subtitle is-4"><b>Budget: </b></p>
+				<div class="columns">
+					<div class="column">
+						<p><label for="min_budget">Minimum: </label></p>
+						<div><input type="number" class="small_number" name="min_budget" id="min_budget" onchange="update()" value="0"></div>
+					</div>
+					<div class="column">
+						<p><label for="max_budget">Maximum: </label></p>
+						<div><input type="number" class="small_number" name="max_budget" id="max_budget" onchange="update()" value="1000"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="column">
+				<p class="subtitle is-4"><b>Capacity: </b></p>
+				<div class="columns">
+					<div class="column">
+						<p><label for="min_capacity">Minimum: </label></p>
+						<div><input type="number" class="small_number" name="min_capacity" id="min_capacity" onchange="update()" value="0"></div>
+					</div>
+					<div class="column">
+						<p><label for="max_capacity">Maximum: </label></p>
+						<div><input type="number" class="small_number" name="max_capacity" id="max_capacity" onchange="update()" value="10000"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="column">
+				<p class="subtitle is-4"><b>Unit $: </b></p>
+				<div class="columns">
+					<div class="column">
+						<p><label for="min_unit_price">Minimum: </label></p>
+						<div><input type="number" class="small_number" name="min_unit_price" id="min_unit_price" onchange="update()" value="0"></div>
+					</div>
+					<div class="column">
+						<p><label for="max_unit_price">Maximum: </label></p>
+						<div><input type="number" class="small_number" name="max_unit_price" id="max_unit_price" onchange="update()" value="5"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="column">
+				<p class="subtitle is-4"><b>ML / Unit $: </b></p>
+				<div class="columns">
+					<div class="column">
+						<p><label for="min_ml_per_unit_price">Minimum: </label></p>
+						<div><input type="number" class="small_number" name="min_ml_per_unit_price" id="min_ml_per_unit_price" onchange="update()" value="0"></div>
+					</div>
+					<div class="column">
+						<p><label for="max_ml_per_unit_price">Maximum: </label></p>
+						<div><input type="number" class="small_number" name="max_ml_per_unit_price" id="max_ml_per_unit_price" onchange="update()" value="4000"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="column">
+				<p class="subtitle is-4"><b>Type: </b></p>
+				<div class="columns">
+					<div class="column">
+						<p><label for="tapes">Tapes: </label></p>
+						<div>
+							<select name="tapes" id="tapes" onchange="update()">
+								<option value="both">Both</option>
+								<option value="4">4</option>
+								<option value="2">2</option>
+							</select>
+						</div>
+					</div>
+					<div class="column">
+						<p><label for="backing">Backing: </label></p>
+						<div>
+							<select name="backing" id="backing" onchange="update()">
+								<option value="both">Both</option>
+								<option value="plastic">Plastic</option>
+								<option value="cloth">Cloth</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+	
+			<div class="column">
+				<p class="subtitle is-4"><b>Misc: </b></p>
+				<div class="columns">
+					<div class="column">
+						<p><label for="in_stock">In Stock: </label></p>
+						<div><input type="checkbox" name="in_stock" id="in_stock" onchange="update()" checked></div>
+					</div>
+					<div class="column">
+						<p><label for="show_all">Show All: </label></p>
+						<div><input type="checkbox" name="show_all" id="show_all" onchange="update()"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+
+	
+	<table class="table is-striped is-hoverable is-fullwidth has-sticky-header" id="table">
+		<thead>
+			<th id="retailer_th" onclick="modifySorts('retailer')"><label for="retailer_th">Retailer</label><i class="material-icons retailer_icon">remove</i></th>
+			<th id="brand_th" onclick="modifySorts('brand')"><label for="brand_th">Brand</label><i class="material-icons brand_icon">remove</i></th>
+			<th id="name_th" onclick="modifySorts('name')"><label for="name_th">Name</label><i class="material-icons name_icon">remove</i></th>
+			<th id="backing_th" onclick="modifySorts('backing')"><label for="backing_th">Backing</label><i class="material-icons backing_icon">remove</i></th>
+			<th id="tapes_th" onclick="modifySorts('tapes')"><label for="tapes_th">Tapes</label><i class="material-icons tapes_icon">remove</i></th>
+			<th id="size_th" onclick="modifySorts('size')"><label for="size_th">Size</label><i class="material-icons size_icon">remove</i></th>
+			<th id="waist_th" onclick="modifySorts('waist')"><label for="waist_th">Waist</label><i class="material-icons waist_icon">remove</i></th>
+			<!-- <th id="price_th" onclick="modifySorts('price')"><label for="price_th">Order</label><i class="material-icons price_icon">remove</i></th> -->
+			<!-- <th id="shipping_th" onclick="modifySorts('shipping')"><label for="shipping_th">Shipping</label><i class="material-icons shipping_icon">remove</i></th> -->
+			<th id="price_th" onclick="modifySorts('price')"><label for="price_th">Total</label><i class="material-icons price_icon">remove</i></th>
+			<th id="units_th" onclick="modifySorts('units')"><label for="units_th">Units</label><i class="material-icons units_icon">remove</i></th>
+			<th id="unit_price_th" onclick="modifySorts('unit_price')"><label for="unit_price_th">Unit Price</label><i class="material-icons unit_price_icon">remove</i></th>
+			<th id="capacity_th" onclick="modifySorts('capacity')"><label for="capacity_th">Capacity</label><i class="material-icons capacity_icon">remove</i></th>
+			<th id="ml_per_unit_price_th" onclick="modifySorts('ml_per_unit_price')"><label for="ml_per_unit_price_th">ML / Unit Price</label><i class="material-icons ml_per_unit_price_icon">remove</i></th>
+			<th id="in_stock_th" onclick="modifySorts('in_stock')"><label for="in_stock_th">In Stock</label><i class="material-icons in_stock_icon">remove</i></th>
+			<th id="notes_th" onclick="modifySorts('notes')"><label for="notes_th">Notes</label><i class="material-icons notes_icon">remove</i></th>
+			<th id="url_th" onclick="modifySorts('url')"><label for="url_th">URL</label><i class="material-icons url_icon">remove</i></th>
+		</thead>
+		<tbody id="tbody"></tbody>
+	</table>
+	<script src="script.js"></script>
+</body>
+
+</html>

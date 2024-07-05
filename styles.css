@@ -1,0 +1,58 @@
+@import url(https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css);
+@import url(https://fonts.googleapis.com/css?family=Fredoka+One);
+@import url(https://fonts.googleapis.com/css?family=Fredoka);
+
+body {
+	font-family: 'Fredoka';
+	background: lightpink;
+	padding: 5px;
+	width: auto;
+	overflow: auto;
+}
+
+.small_number {
+	width: 5em;
+}
+
+h1 {
+	font-family: 'Fredoka One';
+	text-align: center;
+}
+
+.subtitle {
+	font-family: 'Fredoka One';
+}
+
+.column {
+	background: lightpink;
+}
+
+.columns-container {
+	/* background: antiquewhite; */
+	padding: 10px;
+	border-radius: 10px;
+	width: auto;
+}
+
+table {
+	width: auto;
+	/* overflow: auto;
+	white-space: nowrap; */
+}
+
+th {
+	font-family: 'Fredoka One';
+	position: sticky;
+	top: 0px;
+	background-color: lightpink;
+}
+
+th:hover {
+	cursor: pointer;
+}
+
+th label:hover {
+	cursor: pointer;
+}
+
+/* Start https://www.cursors-4u.com */ * {cursor: url(https://cur.cursors-4u.net/symbols/sym-7/sym646.ani), url(https://cur.cursors-4u.net/symbols/sym-7/sym646.gif), auto !important;} /* End https://www.cursors-4u.com */
