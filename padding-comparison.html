@@ -1,155 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Wnsty's Padding Comparison Chart</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+		<link rel="stylesheet" href="styles.css">
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<div>
+			<aside class="menu sidenav" id="sidenav">
+				<button class="closebtn" onclick="closeNav()">&times;</button>
+				<form onchange="render()">
+					<p class="menu-label"><label for="waist">Waist (in.)</label></p>
+					<ul class="menu-list">
+						<li>
+							<input type="number" name="waist" id="waist" value="0" min="0" max="1">
+							<input type="checkbox" id="any-size" name="any-size">
+							<label for="any-size">Any size</label>
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Padding Comparison</title>
-	<link rel="stylesheet" href="styles.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
-
-<body>
-	<h1 class="title">Padding Comparison Chart</h1>
-	<div class="columns-container is-mobile">
-		<div class="columns is-mobile">
-			<div class="column">
-				<p class="subtitle is-4"><b>Size: </b></p>
-				<div class="columns">
-					<div class="column">
-						<p><label for="min_waist">Waist: </label></p>
-						<div><input type="number" class="small_number" name="waist" id="waist" onchange="update_waist(false)" value="32"></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<p class="subtitle is-4"><b>Budget: </b></p>
-				<div class="columns">
-					<div class="column">
-						<p><label for="min_budget">Minimum: </label></p>
-						<div><input type="number" class="small_number" name="min_budget" id="min_budget" onchange="update()" value="0"></div>
-					</div>
-					<div class="column">
-						<p><label for="max_budget">Maximum: </label></p>
-						<div><input type="number" class="small_number" name="max_budget" id="max_budget" onchange="update()" value="1000"></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<p class="subtitle is-4"><b>Capacity: </b></p>
-				<div class="columns">
-					<div class="column">
-						<p><label for="min_capacity">Minimum: </label></p>
-						<div><input type="number" class="small_number" name="min_capacity" id="min_capacity" onchange="update()" value="0"></div>
-					</div>
-					<div class="column">
-						<p><label for="max_capacity">Maximum: </label></p>
-						<div><input type="number" class="small_number" name="max_capacity" id="max_capacity" onchange="update()" value="10000"></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<p class="subtitle is-4"><b>Unit $: </b></p>
-				<div class="columns">
-					<div class="column">
-						<p><label for="min_unit_price">Minimum: </label></p>
-						<div><input type="number" class="small_number" name="min_unit_price" id="min_unit_price" onchange="update()" value="0"></div>
-					</div>
-					<div class="column">
-						<p><label for="max_unit_price">Maximum: </label></p>
-						<div><input type="number" class="small_number" name="max_unit_price" id="max_unit_price" onchange="update()" value="5"></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<p class="subtitle is-4"><b>ML / Unit $: </b></p>
-				<div class="columns">
-					<div class="column">
-						<p><label for="min_ml_per_unit_price">Minimum: </label></p>
-						<div><input type="number" class="small_number" name="min_ml_per_unit_price" id="min_ml_per_unit_price" onchange="update()" value="0"></div>
-					</div>
-					<div class="column">
-						<p><label for="max_ml_per_unit_price">Maximum: </label></p>
-						<div><input type="number" class="small_number" name="max_ml_per_unit_price" id="max_ml_per_unit_price" onchange="update()" value="4000"></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<p class="subtitle is-4"><b>Type: </b></p>
-				<div class="columns">
-					<div class="column">
-						<p><label for="tapes">Tapes: </label></p>
-						<div>
-							<select name="tapes" id="tapes" onchange="update()">
-								<option value="both">Both</option>
-								<option value="4">4</option>
-								<option value="2">2</option>
-							</select>
-						</div>
-					</div>
-					<div class="column">
-						<p><label for="backing">Backing: </label></p>
-						<div>
-							<select name="backing" id="backing" onchange="update()">
-								<option value="both">Both</option>
-								<option value="plastic">Plastic</option>
-								<option value="cloth">Cloth</option>
-							</select>
-						</div>
-					</div>
-				</div>
-			</div>
-	
-			<div class="column">
-				<p class="subtitle is-4"><b>Misc: </b></p>
-				<div class="columns">
-					<div class="column">
-						<p><label for="in_stock">In Stock: </label></p>
-						<div><input type="checkbox" name="in_stock" id="in_stock" onchange="update()" checked></div>
-					</div>
-					<div class="column">
-						<p><label for="show_all">Show All: </label></p>
-						<div><input type="checkbox" name="show_all" id="show_all" onchange="update()"></div>
-					</div>
-				</div>
-			</div>
+						</li>
+					</ul>
+					<p class="menu-label">Price ($)</p>
+					<ul class="menu-list">
+						<li>
+							<label for="price-min">Min</label>
+							<input type="number" name="price-min" id="price-min" value="0" min="0" max="1">
+							<input type="number" name="price-max" id="price-max" value="1" min="0" max="1">
+							<label for="price-max">Max</label>
+						</li>
+					</ul>
+					<p class="menu-label">Units</p>
+					<ul class="menu-list">
+						<li>
+							<label for="units-min">Min</label>
+							<input type="number" name="units-min" id="units-min" value="0" min="0" max="1">
+							<input type="number" name="units-max" id="units-max" value="1" min="0" max="1">
+							<label for="units-max">Max</label>
+						</li>
+					</ul>
+					<p class="menu-label">Capacity (ml)</p>
+					<ul class="menu-list">
+						<li>
+							<label for="capacity-min">Min</label>
+							<input type="number" name="capacity-min" id="capacity-min" value="0" min="0" max="1">
+							<input type="number" name="capacity-max" id="capacity-max" value="1" min="0" max="1">
+							<label for="capacity-max">Max</label>
+						</li>
+					</ul>
+					<p class="menu-label">Unit Price ($)</p>
+					<ul class="menu-list">
+						<li>
+							<label for="unit_price-min">Min</label>
+							<input type="number" name="unit_price-min" id="unit_price-min" value="0" min="0" max="1"
+								step=".25">
+							<input type="number" name="unit_price-max" id="unit_price-max" value="1" min="0" max="1"
+								step=".25">
+							<label for="unit_price-max">Max</label>
+						</li>
+					</ul>
+					<p class="menu-label">ML / Unit Price</p>
+					<ul class="menu-list">
+						<li>
+							<label for="ml_per_unit_price-min">Min</label>
+							<input type="number" name="ml_per_unit_price-min" id="ml_per_unit_price-min" value="0" min="0"
+								max="1">
+							<input type="number" name="ml_per_unit_price-max" id="ml_per_unit_price-max" value="1" min="0"
+								max="1">
+							<label for="ml_per_unit_price-max">Max</label>
+						</li>
+					</ul>
+					<p class="menu-label">Score</p>
+					<ul class="menu-list">
+						<li>
+							<label for="value-min">Min</label>
+							<input type="number" name="value-min" id="value-min" value="0" min="0" max="1">
+							<input type="number" name="value-max" id="value-max" value="1" min="0" max="1">
+							<label for="value-max">Max</label>
+						</li>
+					</ul>
+					<p class="menu-label">Tapes</p>
+					<ul class="menu-list">
+						<li>
+							<input type="checkbox" id="tapes-2" name="tapes-2" value="2" checked>
+							<label for="tapes-2">2</label>
+							<input type="checkbox" id="tapes-4" name="tapes-4" value="4" checked>
+							<label for="tapes-4">4</label>
+						</li>
+					</ul>
+					<p class="menu-label">Backing</p>
+					<ul class="menu-list">
+						<li>
+							<input type="checkbox" id="plastic-backing" name="plastic-backing" value="Plastic" checked>
+							<label for="plastic-backing">Plastic</label>
+							<input type="checkbox" id="cloth-backing" name="cloth-backing" value="Cloth" checked>
+							<label for="cloth-backing">Cloth</label>
+						</li>
+					</ul>
+					<p class="menu-label">Stock</p>
+					<ul class="menu-list">
+						<li>
+							<input type="checkbox" id="in-stock" name="in-stock" checked>
+							<label for="in-stock">Show only in stock</label>
+						</li>
+					</ul>
+				</form>
+				<br>
+				<br>
+			</aside>
 		</div>
-	</div>
-	
-	
-	
-	
+		<div>
+			<h1 class="header">Wnsty's Padding Comparison Chart</h1>
+			<div class="sticky-buttons ">
+				<button class="button primary" onclick="openNav()">Filters</button>
+				<button class="clearsortsbtn button primary" onclick="clearSorts()">Clear Ordering</button>
+			</div>
+			<table class="table is-striped is-hoverable is-fullwidth" id="table">
+				<thead>
+					<tr>
+						<th onclick="updateActiveSorts('brand')">Brand <span class="sort-arrow" id="brand-th">&#11162;</span></th>
+						<th onclick="updateActiveSorts('name')">Name <span class="sort-arrow" id="name-th">&#11162;</span></th>
+						<th onclick="updateActiveSorts('size')">Size <span class="sort-arrow" id="size-th">&#11162;</span></th>
+						<th onclick="updateActiveSorts('waist_low')">Waist (in.) <span class="sort-arrow" id="waist_low-th">&#11162;</span></th>
+						<th onclick="updateActiveSorts('units')">Units <span class="sort-arrow" id="units-th">&#11162;</span></th>
+						<th onclick="updateActiveSorts('price')">Total Price ($) <span class="sort-arrow" id="price-th">&#11162;</span></th>
+						<th onclick="updateActiveSorts('unit_price')">Unit Price ($) <span class="sort-arrow" id="unit_price-th">&#11162;</span></th>
+						<th onclick="updateActiveSorts('capacity')">Capacity (ml) <span class="sort-arrow" id="capacity-th">&#11162;</span></th>
+						<th onclick="updateActiveSorts('ml_per_unit_price')">ML / Unit Price <span class="sort-arrow" id="ml_per_unit_price-th">&#11162;</span></th>
+						<th onclick="updateActiveSorts('value')">Score <span class="sort-arrow" id="value-th">&#11162;</span></th>
+						<th onclick="updateActiveSorts('in_stock')">In Stock <span class="sort-arrow" id="in_stock-th">&#11162;</span></th>
+						<th onclick="updateActiveSorts('notes')">Notes <span class="sort-arrow" id="notes-th">&#11162;</span></th>
+						<th onclick="updateActiveSorts('backing')">Backing <span class="sort-arrow" id="backing-th">&#11162;</span></th>
+						<th onclick="updateActiveSorts('tapes')">Tapes <span class="sort-arrow" id="tapes-th">&#11162;</span></th>
+						<th onclick="updateActiveSorts('url')">URL <span class="sort-arrow" id="url-th">&#11162;</span></th>
+					</tr>
+				</thead>
+				<tbody id="tbody">
 
-	
-	<table class="table is-striped is-hoverable is-fullwidth has-sticky-header" id="table">
-		<thead>
-			<th id="retailer_th" onclick="modifySorts('retailer')"><label for="retailer_th">Retailer</label><i class="material-icons retailer_icon">remove</i></th>
-			<th id="brand_th" onclick="modifySorts('brand')"><label for="brand_th">Brand</label><i class="material-icons brand_icon">remove</i></th>
-			<th id="title_th" onclick="modifySorts('title')"><label for="title_th">Name</label><i class="material-icons title_icon">remove</i></th>
-			<th id="backing_th" onclick="modifySorts('backing')"><label for="backing_th">Backing</label><i class="material-icons backing_icon">remove</i></th>
-			<th id="tapes_th" onclick="modifySorts('tapes')"><label for="tapes_th">Tapes</label><i class="material-icons tapes_icon">remove</i></th>
-			<th id="size_th" onclick="modifySorts('size')"><label for="size_th">Size</label><i class="material-icons size_icon">remove</i></th>
-			<th id="waist_th" onclick="modifySorts('waist')"><label for="waist_th">Waist</label><i class="material-icons waist_icon">remove</i></th>
-			<!-- <th id="price_th" onclick="modifySorts('price')"><label for="price_th">Order</label><i class="material-icons price_icon">remove</i></th> -->
-			<!-- <th id="shipping_th" onclick="modifySorts('shipping')"><label for="shipping_th">Shipping</label><i class="material-icons shipping_icon">remove</i></th> -->
-			<th id="price_th" onclick="modifySorts('price')"><label for="price_th">Total</label><i class="material-icons price_icon">remove</i></th>
-			<th id="units_th" onclick="modifySorts('units')"><label for="units_th">Units</label><i class="material-icons units_icon">remove</i></th>
-			<th id="unit_price_th" onclick="modifySorts('unit_price')"><label for="unit_price_th">Unit Price</label><i class="material-icons unit_price_icon">remove</i></th>
-			<th id="capacity_th" onclick="modifySorts('capacity')"><label for="capacity_th">Capacity</label><i class="material-icons capacity_icon">remove</i></th>
-			<th id="ml_per_unit_price_th" onclick="modifySorts('ml_per_unit_price')"><label for="ml_per_unit_price_th">ML / Unit Price</label><i class="material-icons ml_per_unit_price_icon">remove</i></th>
-			<th id="in_stock_th" onclick="modifySorts('in_stock')"><label for="in_stock_th">In Stock</label><i class="material-icons in_stock_icon">remove</i></th>
-			<th id="notes_th" onclick="modifySorts('notes')"><label for="notes_th">Notes</label><i class="material-icons notes_icon">remove</i></th>
-			<th id="url_th" onclick="modifySorts('url')"><label for="url_th">URL</label><i class="material-icons url_icon">remove</i></th>
-		</thead>
-		<tbody id="tbody"></tbody>
-	</table>
-	<script src="script.js"></script>
-</body>
-
+				</tbody>
+			</table>
+		</div>
+	</body>
 </html>

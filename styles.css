@@ -1,58 +1,70 @@
-@import url(https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css);
-@import url(https://fonts.googleapis.com/css?family=Fredoka+One);
-@import url(https://fonts.googleapis.com/css?family=Fredoka);
-
-body {
-	font-family: 'Fredoka';
-	background: lightpink;
-	padding: 5px;
-	width: auto;
-	overflow: auto;
-}
-
-.small_number {
-	width: 5em;
-}
-
-h1 {
-	font-family: 'Fredoka One';
+.sidenav {
+	height: 100%;
+	width: 15%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: -100%;
+	background-color: #111;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 40px;
 	text-align: center;
 }
 
-.subtitle {
-	font-family: 'Fredoka One';
+.sidenav .closebtn {
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
 }
 
-.column {
-	background: lightpink;
+.sidenav .range {
+	padding: 15px;
 }
 
-.columns-container {
-	/* background: antiquewhite; */
-	padding: 10px;
-	border-radius: 10px;
-	width: auto;
+.sidenav input[type='number'] {
+	width: 60px;
 }
 
-table {
-	width: auto;
-	/* overflow: auto;
-	white-space: nowrap; */
-}
-
-th {
-	font-family: 'Fredoka One';
+.sticky-buttons {
+	background-color: darkorchid;
 	position: sticky;
 	top: 0px;
-	background-color: lightpink;
+	padding: 5px;
 }
 
-th:hover {
-	cursor: pointer;
+.table th {
+	background: darkorchid;
+	position: sticky;
+	top: 45px;
 }
 
-th label:hover {
-	cursor: pointer;
+.header {
+	font-size: 1.5em;
+	margin: 10px;
 }
 
-/* Start https://www.cursors-4u.com */ * {cursor: url(https://cur.cursors-4u.net/symbols/sym-7/sym646.ani), url(https://cur.cursors-4u.net/symbols/sym-7/sym646.gif), auto !important;} /* End https://www.cursors-4u.com */
+@media screen and (max-width: 1400px) {
+	.sidenav {
+		width: 40vw;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.sidenav {
+		width: 100vw;
+		float: none;
+	}
+}
+
+@media screen and (max-height: 400px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+
+	.sidenav a {
+		font-size: 18px;
+	}
+}
