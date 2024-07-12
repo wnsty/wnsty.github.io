@@ -29,14 +29,14 @@
 }
 
 .sticky-buttons {
-	background-color: darkorchid;
+	background-color: lightpink;
 	position: sticky;
 	top: 0px;
 	padding: 5px;
 }
 
 .table th {
-	background: darkorchid;
+	background: lightpink;
 	position: sticky;
 	top: 45px;
 }
