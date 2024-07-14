@@ -28,6 +28,11 @@ const clearSorts = () => {
 	render();
 }
 
+const renderLastUpdated = (date) => {
+	const element = document.getElementById('last-updated');
+	element.innerHTML = `Last updated: ${date}`;
+}
+
 const updateActiveSorts = (sortColumn) => {
 	const index = activeSorts.map(e => e.column).indexOf(sortColumn);
 
@@ -60,6 +65,8 @@ const getData = async () => {
 		console.error("no JSON files found");
 		return [];
 	}
+
+	renderLastUpdated(jsonFiles[0].name.split(".")[0]);
 
 	const latestUrl = jsonFiles[0].download_url;
 	const latestResponse = await fetch(latestUrl);
