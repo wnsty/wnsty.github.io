@@ -1,148 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Wnsty's Padding Comparison Chart</title>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
-		<link rel="stylesheet" href="styles.css">
-		<script src="script.js" defer></script>
-	</head>
-	<body>
-		<div>
-			<aside class="menu sidenav" id="sidenav">
-				<button class="closebtn" onclick="closeNav()">&times;</button>
-				<form onchange="render()">
-					<p class="menu-label"><label for="waist">Waist (in.)</label></p>
-					<ul class="menu-list">
-						<li>
-							<input type="number" name="waist" id="waist" value="0" min="0" max="1">
-							<input type="checkbox" id="any-size" name="any-size">
-							<label for="any-size">Any size</label>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wnsty's Padding Comparison</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+        }
+        
+        h1 {
+            margin: 0 0 10px 0;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .filters {
+            margin-bottom: 10px;
+        }
+        
+        label {
+            font-size: 13px;
+            color: #666;
+            margin-right: 4px;
+        }
+        
+        select, input {
+            padding: 4px 8px;
+            border: 1px solid #ccc;
+            font-size: 13px;
+            margin-right: 16px;
+        }
+        
+        .item-count, .last-updated {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 6px 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background: #f5f5f5;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+        }
+        
+        th:hover {
+            background: #e8e8e8;
+        }
 
-						</li>
-					</ul>
-					<p class="menu-label">Price ($)</p>
-					<ul class="menu-list">
-						<li>
-							<label for="price-min">Min</label>
-							<input type="number" name="price-min" id="price-min" value="0" min="0" max="1">
-							<input type="number" name="price-max" id="price-max" value="1" min="0" max="1">
-							<label for="price-max">Max</label>
-						</li>
-					</ul>
-					<p class="menu-label">Units</p>
-					<ul class="menu-list">
-						<li>
-							<label for="units-min">Min</label>
-							<input type="number" name="units-min" id="units-min" value="0" min="0" max="1">
-							<input type="number" name="units-max" id="units-max" value="1" min="0" max="1">
-							<label for="units-max">Max</label>
-						</li>
-					</ul>
-					<p class="menu-label">Capacity (ml)</p>
-					<ul class="menu-list">
-						<li>
-							<label for="capacity-min">Min</label>
-							<input type="number" name="capacity-min" id="capacity-min" value="0" min="0" max="1">
-							<input type="number" name="capacity-max" id="capacity-max" value="1" min="0" max="1">
-							<label for="capacity-max">Max</label>
-						</li>
-					</ul>
-					<p class="menu-label">Unit Price ($)</p>
-					<ul class="menu-list">
-						<li>
-							<label for="unit_price-min">Min</label>
-							<input type="number" name="unit_price-min" id="unit_price-min" value="0" min="0" max="1"
-								step=".25">
-							<input type="number" name="unit_price-max" id="unit_price-max" value="1" min="0" max="1"
-								step=".25">
-							<label for="unit_price-max">Max</label>
-						</li>
-					</ul>
-					<p class="menu-label">ML / Unit Price</p>
-					<ul class="menu-list">
-						<li>
-							<label for="ml_per_unit_price-min">Min</label>
-							<input type="number" name="ml_per_unit_price-min" id="ml_per_unit_price-min" value="0" min="0"
-								max="1">
-							<input type="number" name="ml_per_unit_price-max" id="ml_per_unit_price-max" value="1" min="0"
-								max="1">
-							<label for="ml_per_unit_price-max">Max</label>
-						</li>
-					</ul>
-					<p class="menu-label">Score</p>
-					<ul class="menu-list">
-						<li>
-							<label for="value-min">Min</label>
-							<input type="number" name="value-min" id="value-min" value="0" min="0" max="1">
-							<input type="number" name="value-max" id="value-max" value="1" min="0" max="1">
-							<label for="value-max">Max</label>
-						</li>
-					</ul>
-					<p class="menu-label">Tapes</p>
-					<ul class="menu-list">
-						<li>
-							<input type="checkbox" id="tapes-2" name="tapes-2" value="2" checked>
-							<label for="tapes-2">2</label>
-							<input type="checkbox" id="tapes-4" name="tapes-4" value="4" checked>
-							<label for="tapes-4">4</label>
-						</li>
-					</ul>
-					<p class="menu-label">Backing</p>
-					<ul class="menu-list">
-						<li>
-							<input type="checkbox" id="plastic-backing" name="plastic-backing" value="Plastic" checked>
-							<label for="plastic-backing">Plastic</label>
-							<input type="checkbox" id="cloth-backing" name="cloth-backing" value="Cloth" checked>
-							<label for="cloth-backing">Cloth</label>
-						</li>
-					</ul>
-					<p class="menu-label">Stock</p>
-					<ul class="menu-list">
-						<li>
-							<input type="checkbox" id="in-stock" name="in-stock" checked>
-							<label for="in-stock">Show only in stock</label>
-						</li>
-					</ul>
-				</form>
-				<br>
-				<br>
-			</aside>
-		</div>
-		<div>
-			<div class="header">
-				<h1 >Wnsty's Padding Comparison Chart</h1>
-				<h2 id="last-updated" class="subtitle"></h2>
-			</div>
-			<div class="sticky-buttons ">
-				<button class="button primary" onclick="openNav()">Filters</button>
-				<button class="clearsortsbtn button primary" onclick="clearSorts()">Clear Ordering</button>
-			</div>
-			<table class="table is-striped is-hoverable is-fullwidth" id="table">
-				<thead>
-					<tr>
-						<th class="has-text-dark" onclick="updateActiveSorts('brand')">Brand <span class="sort-arrow" id="brand-th">&#11162;</span></th>
-						<th class="has-text-dark" onclick="updateActiveSorts('name')">Name <span class="sort-arrow" id="name-th">&#11162;</span></th>
-						<th class="has-text-dark" onclick="updateActiveSorts('size')">Size <span class="sort-arrow" id="size-th">&#11162;</span></th>
-						<th class="has-text-dark" onclick="updateActiveSorts('waist_low')">Waist (in.) <span class="sort-arrow" id="waist_low-th">&#11162;</span></th>
-						<th class="has-text-dark" onclick="updateActiveSorts('units')">Units <span class="sort-arrow" id="units-th">&#11162;</span></th>
-						<th class="has-text-dark" onclick="updateActiveSorts('price')">Total Price ($) <span class="sort-arrow" id="price-th">&#11162;</span></th>
-						<th class="has-text-dark" onclick="updateActiveSorts('unit_price')">Unit Price ($) <span class="sort-arrow" id="unit_price-th">&#11162;</span></th>
-						<th class="has-text-dark" onclick="updateActiveSorts('capacity')">Capacity (ml) <span class="sort-arrow" id="capacity-th">&#11162;</span></th>
-						<th class="has-text-dark" onclick="updateActiveSorts('ml_per_unit_price')">ML / Unit Price <span class="sort-arrow" id="ml_per_unit_price-th">&#11162;</span></th>
-						<th class="has-text-dark" onclick="updateActiveSorts('value')">Score <span class="sort-arrow" id="value-th">&#11162;</span></th>
-						<th class="has-text-dark" onclick="updateActiveSorts('in_stock')">In Stock <span class="sort-arrow" id="in_stock-th">&#11162;</span></th>
-						<th class="has-text-dark" onclick="updateActiveSorts('notes')">Notes <span class="sort-arrow" id="notes-th">&#11162;</span></th>
-						<th class="has-text-dark" onclick="updateActiveSorts('backing')">Backing <span class="sort-arrow" id="backing-th">&#11162;</span></th>
-						<th class="has-text-dark" onclick="updateActiveSorts('tapes')">Tapes <span class="sort-arrow" id="tapes-th">&#11162;</span></th>
-						<th class="has-text-dark" onclick="updateActiveSorts('url')">URL <span class="sort-arrow" id="url-th">&#11162;</span></th>
-					</tr>
-				</thead>
-				<tbody id="tbody">
+        th.expandable {
+            cursor: pointer;
+        }
 
-				</tbody>
-			</table>
-		</div>
-	</body>
+        tr.detail-row td {
+            padding: 0 20px;
+            background: #fafafa;
+            font-size: 14px;
+            color: #555;
+            overflow: hidden;
+        }
+
+        tr.detail-row .detail-wrapper {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out, padding 0.2s ease-out;
+        }
+
+        tr.detail-row.open .detail-wrapper {
+            max-height: 100px;
+            padding: 10px 0;
+        }
+
+        .detail-content {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .detail-content strong {
+            color: #333;
+        }
+        
+        th.sorted-asc::after {
+            content: ' ▲';
+            font-size: 10px;
+        }
+        
+        th.sorted-desc::after {
+            content: ' ▼';
+            font-size: 10px;
+        }
+        
+        .price {
+            font-weight: 500;
+        }
+        
+        .low-price {
+            color: #28a745;
+        }
+        
+        .high-price {
+            color: #dc3545;
+        }
+        
+        .edit-data {
+            margin-top: 10px;
+        }
+        
+        .edit-data summary {
+            cursor: pointer;
+            font-size: 13px;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin-top: 8px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        
+        button {
+            padding: 6px 12px;
+            margin-top: 6px;
+        }
+    </style
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Wnsty's Padding Comparison</h1>
+    <span class="last-updated" id="lastUpdated">Last Updated: ...</span>
+    <span class="item-count" id="itemCount"></span>
+    
+    <div class="filters">
+        <label>Brand:</label><input type="text" id="brandFilter" placeholder="e.g. ABUniverse">
+        <label>Category:</label><select id="categoryFilter"><option value="">All</option></select>
+        <label>Waist:</label><select id="waistFilter"><option value="">All</option></select>
+        <label>Min Waist:</label><input type="number" id="minWaist" placeholder="28" style="width:60px">
+        <label>Max Waist:</label><input type="number" id="maxWaist" placeholder="40" style="width:60px">
+        <label>In Stock:</label><input type="checkbox" id="inStock">
+        <label>Min Price:</label><input type="number" id="minPrice" placeholder="25" style="width:60px">
+        <label>Max Price:</label><input type="number" id="maxPrice" placeholder="50" style="width:60px">
+    </div>
+    
+    <table id="productTable">
+        <thead>
+            <tr>
+                <th data-sort="brand">Brand</th>
+                <th data-sort="title">Title</th>
+                <th data-sort="capacity">Capacity</th>
+                <th data-sort="price">Price</th>
+                <th data-sort="units">Units</th>
+                <th data-sort="unitPrice">Price/Unit</th>
+                <th data-sort="mlPerUnitPrice">ml/Unit Price</th>
+                <th data-sort="waist">Waist</th>
+                <th data-sort="link">Link</th>
+            </tr>
+        </thead>
+        <tbody id="productBody">
+        </tbody>
+    </table>
+
+    <script>
+        let products = [];
+        let currentSort = { column: null, direction: 'asc' };
+
+        function calculatePricePerUnit(product) {
+            return product.price / product.quantity;
+        }
+
+        function getPriceStats() {
+            const perUnitPrices = products.map(p => calculatePricePerUnit(p));
+            return {
+                min: Math.min(...perUnitPrices),
+                max: Math.max(...perUnitPrices)
+            };
+        }
+
+        function populateFilters() {
+            // const categories = [...new Set(products.map(p => p.category))].sort();
+            // const waists = [...new Set(products.map(p => p.waist).filter(w => w !== null))].sort((a, b) => a - b);
+            
+            // const categorySelect = document.getElementById('categoryFilter');
+            // categorySelect.innerHTML = '<option value="">All</option>' + 
+            //     categories.map(c => `<option value="${c}">${c}</option>`).join('');
+            // 
+            // const waistSelect = document.getElementById('waistFilter');
+            // waistSelect.innerHTML = '<option value="">All</option>' + 
+            //     waists.map(w => `<option value="${w}">${w}"</option>`).join('');
+        }
+
+        function filterProducts() {
+            const brandFilter = document.getElementById('brandFilter').value.toLowerCase();
+            // const categoryFilter = document.getElementById('categoryFilter').value;
+            // const waistFilter = document.getElementById('waistFilter').value;
+            const maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
+            const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+          const minWaist = parseFloat(document.getElementById('minWaist').value) || 0;
+          const maxWaist = parseFloat(document.getElementById('maxWaist').value) || Infinity;
+            const inStock = document.getElementById('inStock').checked || false;
+            
+            return products.filter(p => {
+                if (brandFilter && !p.brand.toLowerCase().includes(brandFilter)) return false;
+                // if (categoryFilter && p.category !== categoryFilter) return false;
+                // if (waistFilter && p.waist != waistFilter) return false;
+                if (p.waistLow < minWaist || p.waistHigh > maxWaist) return false;
+                if (p.price < minPrice || p.price > maxPrice) return false;
+                if (inStock && p.inStock == 'No') return false;
+                return true;
+            });
+        }
+
+        function sortProducts(filtered) {
+            if (!currentSort.column) return filtered;
+            
+            return [...filtered].sort((a, b) => {
+                let aVal, bVal;
+                
+                if (currentSort.column === 'pricePerUnit') {
+                    aVal = calculatePricePerUnit(a);
+                    bVal = calculatePricePerUnit(b);
+                } else {
+                    aVal = a[currentSort.column];
+                    bVal = b[currentSort.column];
+                }
+                
+                if (aVal === null || aVal === undefined) return 1;
+                if (bVal === null || bVal === undefined) return -1;
+                
+                if (typeof aVal === 'string') {
+                    aVal = aVal.toLowerCase();
+                    bVal = bVal.toLowerCase();
+                }
+                
+                let result = aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+                return currentSort.direction === 'desc' ? -result : result;
+            });
+        }
+
+        function renderTable() {
+            const filtered = filterProducts();
+            const sorted = sortProducts(filtered);
+            const priceStats = getPriceStats();
+            const colCount = document.querySelectorAll('th').length;
+            
+            const tbody = document.getElementById('productBody');
+            tbody.innerHTML = sorted.map((p, i) => {
+                const pricePerUnit = calculatePricePerUnit(p);
+                const priceClass = pricePerUnit === priceStats.min ? 'low-price' : 
+                                   pricePerUnit === priceStats.max ? 'high-price' : '';
+                return `<tr class="expandable" onclick="toggleDetail(${i})">
+                    <td>${p.brand}</td>
+                    <td>${p.title}</td>
+                    <td>${p.capacity}</td>
+                    <td class="price">$${p.price.toFixed(2)}</td>
+                    <td>${p.units}</td>
+                    <td>$${p.unitPrice.toFixed(2)}</td>
+                    <td>${p.mlPerUnitPrice.toFixed(0)}</td>
+                    <td>${p.waistLow} - ${p.waistHigh}</td>
+                    <td><a href="${p.url}">Here!</a></td>
+                </tr>
+                <tr class="detail-row" id="detail-${i}">
+                    <td colspan="${colCount}">
+                        <div class="detail-wrapper">
+                            <div class="detail-content">
+                                <div><strong>Id:</strong> ${p.id || '—'}</div>
+                                <div><strong>In Stock:</strong> ${p.inStock || '—'}</div>
+                                <div><strong>Notes:</strong> ${p.notes.length > 0 ? p.notes : '—'}</div>
+                                <!-- <div><strong>Rating:</strong> ${p.rating ? '★ ' + p.rating + '/5' : '—'}</div> -->
+                                <!-- <div><strong>Color:</strong> ${p.color || '—'}</div> -->
+                                <!-- <div><strong>SKU:</strong> ${p.sku || '—'}</div> -->
+                            </div>
+                        </div>
+                    </td>
+                </tr>`;
+            }).join('');
+            //     <td>${p.category}</td>
+            //     <td class="price">$${p.price.toFixed(2)}</td>
+            //     <td>${p.quantity}</td>
+            //     <td class="price ${priceClass}">$${pricePerUnit.toFixed(2)}</td>
+            //     <td>${p.waist ? p.waist + '"' : '—'}</td>
+            //     <td>${p.length ? p.length + '"' : '—'}</td>
+            //     <td>${p.material}</td>
+            //     <td>${p.rating ? '★ ' + p.rating : '—'}</td>
+            // </tr>`;
+            
+            document.getElementById('itemCount').textContent = `Showing ${sorted.length} of ${products.length} items`;
+            
+            // Update sort indicators
+            document.querySelectorAll('th').forEach(th => {
+                th.classList.remove('sorted-asc', 'sorted-desc');
+                if (th.dataset.sort === currentSort.column) {
+                    th.classList.add(`sorted-${currentSort.direction}`);
+                }
+            });
+        }
+
+        function handleSort(column) {
+            if (currentSort.column === column) {
+                currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+            } else {
+                currentSort.column = column;
+                currentSort.direction = 'asc';
+            }
+            renderTable();
+        }
+
+        function toggleDetail(index) {
+            const detailRow = document.getElementById(`detail-${index}`);
+            detailRow.classList.toggle('open');
+        }
+
+        function loadDataFromEditor() {
+            try {
+                products = JSON.parse(document.getElementById('dataEditor').value);
+                populateFilters();
+                renderTable();
+            } catch (e) {
+                alert('Invalid JSON: ' + e.message);
+            }
+        }
+
+        // Initialize
+        document.querySelectorAll('th[data-sort]').forEach(th => {
+            th.addEventListener('click', () => handleSort(th.dataset.sort));
+        });
+
+        ['brandFilter', 'categoryFilter', 'waistFilter', 'maxPrice', 'minPrice', 'inStock', 'minWaist', 'maxWaist'].forEach(id => {
+            document.getElementById(id).addEventListener('input', renderTable);
+        });
+
+        const setLastUpdated = (lastUpdated) => {
+          const e = document.getElementById('lastUpdated').innerText = `Last Updated: ${lastUpdated}`;
+        }
+
+        const getData = async () => {
+          const url = `https://api.github.com/repos/wnsty/wnsty.github.io/contents/data`;
+          const response = await fetch(url);
+          const files = await response.json();
+          const jsonFiles = files
+            .filter(file => file.name.endsWith('.json'))
+            .sort((a, b) => new Date(b.name.split(".")[0] - new Date(a.name.split(".")[0])))
+          
+          if (jsonFiles.length === 0) {
+            console.error("no JSON files found");
+            return [];
+          }
+
+          setLastUpdated(jsonFiles[0].name.split('.')[0]);
+
+          const latestUrl = jsonFiles[0].download_url;
+          const latestResponse = await fetch(latestUrl);
+          return await latestResponse.json();
+        }
+
+        async function init() {
+          products = await getData();
+          populateFilters();
+          renderTable();
+        }
+
+        init();
+    </script>
+</body>
 </html>
