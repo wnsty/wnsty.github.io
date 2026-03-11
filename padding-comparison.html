@@ -359,8 +359,8 @@
           const files = await response.json();
           const jsonFiles = files
             .filter(file => file.name.endsWith('.json'))
-            .sort((a, b) => new Date(b.name.split(".")[0] - new Date(a.name.split(".")[0])))
-          
+            .sort((a, b) => new Date(b.name.split(".")[0]) - new Date(a.name.split(".")[0]));
+
           if (jsonFiles.length === 0) {
             console.error("no JSON files found");
             return [];
